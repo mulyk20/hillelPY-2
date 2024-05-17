@@ -11,4 +11,5 @@ check:
 	black .
 	isort .
 	flake8 .
+	pytest .
 	@echo 'Finish'

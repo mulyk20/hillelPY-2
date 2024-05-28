@@ -25,8 +25,6 @@ class Car:
             print("Not enough money for the trip!")
 
 
-
-
 def create_car(model, year, price):
     return Car(model, year, price)
 

@@ -1,7 +1,7 @@
 import sqlite3
 from pprint import pprint
 
-with sqlite3.connect('new_db.sqlite3') as connection:
+with sqlite3.connect("new_db.sqlite3") as connection:
     cursor = connection.cursor()
 
     query = """
@@ -32,7 +32,6 @@ with sqlite3.connect('new_db.sqlite3') as connection:
     """
     # cursor.execute(query)
 
-
     # CREATE
     insert_query = """
         INSERT INTO category (name)
@@ -47,11 +46,10 @@ with sqlite3.connect('new_db.sqlite3') as connection:
 
     # cursor.execute(insert_query_device, ['Samsung A50', 7000, 8000, 1])
     devices = [
-        ('Samsung A60', 8000, 8000, 1),
-        ('Serfing', 3000, 4000, 5),
+        ("Samsung A60", 8000, 8000, 1),
+        ("Serfing", 3000, 4000, 5),
     ]
     # cursor.executemany(insert_query_device, devices)
-
 
     # READ
     query = """
@@ -78,8 +76,3 @@ with sqlite3.connect('new_db.sqlite3') as connection:
     pprint(result.fetchone(), indent=4)
     pprint(result.fetchone(), indent=4)
     pprint(result.fetchone(), indent=4)
-
-
-
-
-

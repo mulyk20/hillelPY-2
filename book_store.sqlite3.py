@@ -1,6 +1,6 @@
 import sqlite3
 
-with sqlite3.connect('book_store.sqlite3') as connection:
+with sqlite3.connect("book_store.sqlite3") as connection:
     cursor = connection.cursor()
     create_authors_table = """
         CREATE TABLE IF NOT EXISTS authors (
@@ -13,7 +13,7 @@ with sqlite3.connect('book_store.sqlite3') as connection:
     connection.commit()
 
 
-with sqlite3.connect('book_store.sqlite3') as connection:
+with sqlite3.connect("book_store.sqlite3") as connection:
     cursor = connection.cursor()
     create_books_table = """
         CREATE TABLE IF NOT EXISTS books (
@@ -29,46 +29,41 @@ with sqlite3.connect('book_store.sqlite3') as connection:
     connection.commit()
 
 
-with sqlite3.connect('book_store.sqlite3') as connection:
+with sqlite3.connect("book_store.sqlite3") as connection:
     cursor = connection.cursor()
     insert_one_author = """
         INSERT INTO authors (name, birth_year)
         VALUES (?, ?)
     """
-    cursor.execute(insert_one_author, ['Author One', 1950])
-    authors = [
-        ('Author Two', 1980),
-        ('Author Three', 1975),
-        ('Author Four', 1960),
-        ('Author Five', 1945)
-    ]
+    cursor.execute(insert_one_author, ["Author One", 1950])
+    authors = [("Author Two", 1980), ("Author Three", 1975), ("Author Four", 1960), ("Author Five", 1945)]
     cursor.executemany(insert_one_author, authors)
     connection.commit()
 
 
-with sqlite3.connect('book_store.sqlite3') as connection:
+with sqlite3.connect("book_store.sqlite3") as connection:
     cursor = connection.cursor()
     insert_book = """
         INSERT INTO books (title, author_id, price, description)
         VALUES (?, ?, ?, ?)
     """
     books = [
-        ('Book One: рецепт', 1, 150.0, 'Description of Book One'),
-        ('Book Two', 2, 200.0, 'Description of Book Two'),
-        ('Book Three', 3, 250.0, 'Description of Book Three'),
-        ('Book Four', 4, 300.0, 'Description of Book Four'),
-        ('Book Five', 5, 350.0, 'Description of Book Five'),
-        ('Book Six: рецепт', 1, 400.0, 'Description of Book Six'),
-        ('Book Seven', 2, 450.0, 'Description of Book Seven'),
-        ('Book Eight', 3, 500.0, 'Description of Book Eight'),
-        ('Book Nine', 4, 550.0, 'Description of Book Nine'),
-        ('Book Ten', 5, 600.0, 'Description of Book Ten')
+        ("Book One: рецепт", 1, 150.0, "Description of Book One"),
+        ("Book Two", 2, 200.0, "Description of Book Two"),
+        ("Book Three", 3, 250.0, "Description of Book Three"),
+        ("Book Four", 4, 300.0, "Description of Book Four"),
+        ("Book Five", 5, 350.0, "Description of Book Five"),
+        ("Book Six: рецепт", 1, 400.0, "Description of Book Six"),
+        ("Book Seven", 2, 450.0, "Description of Book Seven"),
+        ("Book Eight", 3, 500.0, "Description of Book Eight"),
+        ("Book Nine", 4, 550.0, "Description of Book Nine"),
+        ("Book Ten", 5, 600.0, "Description of Book Ten"),
     ]
     cursor.executemany(insert_book, books)
     connection.commit()
 
 
-with sqlite3.connect('book_store.sqlite3') as connection:
+with sqlite3.connect("book_store.sqlite3") as connection:
     cursor = connection.cursor()
     query = """
         SELECT * FROM books
@@ -78,7 +73,7 @@ with sqlite3.connect('book_store.sqlite3') as connection:
     print(result.fetchall())
 
 
-with sqlite3.connect('book_store.sqlite3') as connection:
+with sqlite3.connect("book_store.sqlite3") as connection:
     cursor = connection.cursor()
     query = """
         SELECT * FROM authors
@@ -88,7 +83,7 @@ with sqlite3.connect('book_store.sqlite3') as connection:
     print(result.fetchall())
 
 
-with sqlite3.connect('book_store.sqlite3') as connection:
+with sqlite3.connect("book_store.sqlite3") as connection:
     cursor = connection.cursor()
     query = """
         SELECT * FROM books
@@ -98,7 +93,7 @@ with sqlite3.connect('book_store.sqlite3') as connection:
     print(result.fetchall())
 
 
-with sqlite3.connect('book_store.sqlite3') as connection:
+with sqlite3.connect("book_store.sqlite3") as connection:
     cursor = connection.cursor()
     query = """
         SELECT * FROM books

@@ -14,7 +14,6 @@ from passlib.context import CryptContext
 # print(saved_password == user_input_encode)
 
 
-
 context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 

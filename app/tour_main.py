@@ -1,41 +1,24 @@
-from fastapi import FastAPI, HTTPException, Path, Query, status
+from fastapi import FastAPI
+from fastapi.templating import Jinja2Templates
 
-import app.tour_dao as dao
+import app.tour_config
+from api_router.api_products import api_router_products
+from api_router.api_users import api_router_users
+from api_router.api_visitors import api_router_visitors
 from app.tour_database import create_tables
-from app.tour_schemas import Tour, TourCreate
-
-app = FastAPI(on_startup=[create_tables])
+# from web_router.web import web_router
 
 
-@app.post("/api/tours/", response_model=Tour, status_code=status.HTTP_201_CREATED)
-def create_tour(tour: TourCreate):
-    return dao.create_tour(tour.dict())
+def lifespan(app: FastAPI):
+    create_tables()
+    yield
 
+app = FastAPI(
+    debug=app.tour_config.DEBUG,
+    lifespan=lifespan,
+)
 
-@app.get("/api/tours/", response_model=list[Tour])
-def get_tours(limit: int = Query(10, gt=0), skip: int = Query(0, ge=0)):
-    return dao.get_all_tours(limit=limit, skip=skip)
-
-
-@app.get("/api/tours/{tour_id}", response_model=Tour)
-def get_tour(tour_id: int = Path(..., gt=0)):
-    tour = dao.get_tour_by_id(tour_id)
-    if tour is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Tour not found")
-    return tour
-
-
-@app.put("/api/tours/{tour_id}", response_model=Tour)
-def update_tour(tour_id: int, tour: TourCreate):
-    updated_tour = dao.update_tour(tour_id, tour.dict())
-    if updated_tour is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Tour not found")
-    return updated_tour
-
-
-@app.delete("/api/tours/{tour_id}", response_model=dict)
-def delete_tour(tour_id: int):
-    success = dao.delete_tour(tour_id)
-    if not success:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Tour not found")
-    return {"status": "success", "tour_id": tour_id}
+app.include_router(api_router_products)
+app.include_router(api_router_users)
+app.include_router(api_router_visitors)
+# app.include_router(web_router)

@@ -1,25 +1,37 @@
-from datetime import date
+from pydantic import BaseModel, EmailStr
+import uuid
+from datetime import datetime
+from typing import Optional, List
 
-from pydantic import BaseModel, Field
+class NewProduct(BaseModel):
+    name: str
+    description: str
+    price: float
+    cover_url: str
+    quantity: int
 
-
-class TourBase(BaseModel):
-    start_date: date
-    end_date: date
-    price: float = Field(..., gt=0)
-    country: str = Field(..., max_length=50)
-    hotel_class: str = Field(..., max_length=20)
-    description: str = Field(None, max_length=255)
-
-
-class TourCreate(TourBase):
-    pass
-
-
-class Tour(TourBase):
+class CreatedProduct(NewProduct):
     id: int
-    created_at: date
-    updated_at: date
+    created_at: datetime
 
-    class Config:
-        orm_mode = True
+class UpdateProduct(BaseModel):
+    name: Optional[str] = None
+    description: Optional[str] = None
+    price: Optional[float] = None
+    cover_url: Optional[str] = None
+    quantity: Optional[int] = None
+
+class RegisterUserRequest(BaseModel):
+    email: EmailStr
+    password: str
+    name: str
+
+class BaseUserInfo(BaseModel):
+    user_uuid: uuid.UUID
+    email: EmailStr
+    name: str
+
+class RegisterVisitorRequest(BaseModel):
+    email: EmailStr
+    password: str
+    name: str

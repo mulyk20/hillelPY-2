@@ -2,23 +2,56 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Title</title>
-  </head>
-  <body style="background: yellow">
-    <h1>Dear {{ name }}</h1>
-    <h2>welcome to the jungle</h2>
-
-    <ul>
-      {% for hobby in hobbies %}
-      <li>{{ hobby }}</li>
-      {% endfor %}
-    </ul>
-
-    {% if has_car %}
-    <img
-      src="https://posterix.com.ua/images/product_images/popup_images/14644VE.jpg"
-      alt="Italian Trulli"
+    <title>Account verification</title>
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.2/examples/sign-in/"
     />
-    {% endif %}
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.2/examples/blog/"
+    />
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.2/examples/blog/"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+
+    <link
+      href="/docs/5.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="w.css" rel="stylesheet" />
+
+    <link
+      href="/docs/5.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body style="background: gold">
+    <h1>Dear {{ name }}</h1>
+    <h2>Thank you for registration</h2>
+    <p>Please, confirm your registration by clicking the link below</p>
+    <a type="button" href="{{ link }}">Verify email</a>
   </body>
 </html>
